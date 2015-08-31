@@ -20,5 +20,8 @@ Route::get('users', function()
 {
     $users = User::all();
 
+//echo "<pre>";
+//var_dump($users);
+//echo "</pre>";
     return View::make('users')->with('users', $users);
 });
