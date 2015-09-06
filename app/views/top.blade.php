@@ -2,11 +2,22 @@
 
 
 @section('content')
+	<table>
+		<tr class="tableHeader">
+			<th>名前</th>
+			<th>所属</th>
+			<th>メールアドレス</th>
+			<th>削除フラグ</th>
+		</tr>
     @foreach($Departments as $Department)
-        <p>　{{$Department->departmentcd}}:
-        	{{$Department->sectioncd}}:
-        	{{$Department->departmentname}}</p>
+        <tr>
+        	<th>{{$Department->departmentcd}}</th>
+        	<th>{{$Department->sectioncd}}</th>
+        	<th>{{$Department->departmentname}}</th>
+        	<th>{{$Department->departmentname}}</th>
+    	</tr>
     @endforeach
+	</table>
 @stop
 
 @section('header')
