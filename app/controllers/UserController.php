@@ -13,7 +13,7 @@ class UserController extends BaseController {
 				         'usermasters.mailaddress as mailaddress',
 				         'usermasters.deleteflg as deleteflg')
 				->get();
-	    return View::make('top')->with('Users', $users);		
+	    return View::make('top', array('Users' => $users, 'title' => 'ユーザー管理TOP'));		
 	}
 
 }

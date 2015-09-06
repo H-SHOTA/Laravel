@@ -9,7 +9,15 @@ table {
 }
 
 .tableHeader {
-	background-color: #cccccc;
+	background-color: #BBBBBB;
+}
+
+.colColor {
+	background-color: #EEEEEE;
+}
+
+#newRegistBtn {
+	text-align:center;
 }
 
 tr th {

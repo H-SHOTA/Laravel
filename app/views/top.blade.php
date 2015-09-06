@@ -2,7 +2,11 @@
 
 
 @section('content')
-	<table>
+    <div id="newRegistBtn" >
+        <input type="button" value="新規登録" onclick="location.href='/new'">
+	</div>
+    <br>
+    <table>
 		<tr class="tableHeader">
 			<th>名前</th>
 			<th>所属</th>
