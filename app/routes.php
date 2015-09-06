@@ -11,8 +11,10 @@
 |
 */
 // 基本のGETルート
+/*
 Route::get('/', function()
 {
+	
 	$users = DB::table('usermasters')
 			->join('departmentmasters', 'usermasters.departmentcd', '=', 'departmentmasters.departmentcd')
 			->join('sectionmasters', 'sectionmasters.sectioncd', '=', 'departmentmasters.sectioncd')
@@ -21,6 +23,10 @@ Route::get('/', function()
 			         'departmentmasters.departmentname as departmentname',
 			         'usermasters.mailaddress as mailaddress',
 			         'usermasters.deleteflg as deleteflg')
-			->get();
+			->get();z
     return View::make('top')->with('Users', $users);
+    
+
 });
+*/
+Route::resource('/', 'UserController');

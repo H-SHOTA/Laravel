@@ -14,4 +14,5 @@ table {
 
 tr th {
 	border: black solid 1px;
+	padding: 5px;
 }
