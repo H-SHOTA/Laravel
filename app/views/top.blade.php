@@ -9,12 +9,18 @@
 			<th>メールアドレス</th>
 			<th>削除フラグ</th>
 		</tr>
-    @foreach($Departments as $Department)
+    @foreach($Users as $User)
         <tr>
-        	<th>{{$Department->departmentcd}}</th>
-        	<th>{{$Department->sectioncd}}</th>
-        	<th>{{$Department->departmentname}}</th>
-        	<th>{{$Department->departmentname}}</th>
+        	<th>{{$User->familyname}} {{$User->firstname}}</th>
+        	<th>{{$User->sectionname}} {{$User->departmentname}}</th>
+        	<th>{{$User->mailaddress}}</th>
+        	<th>
+        		@if ($User->deleteflg === 0)
+        			未削除
+        		@else
+        			削除済み
+        		@endif
+        	</th>
     	</tr>
     @endforeach
 	</table>
