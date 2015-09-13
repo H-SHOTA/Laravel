@@ -3,7 +3,17 @@
 
 @section('content')
     <div id="newRegistBtn" >
-        <input type="button" value="新規登録" onclick="location.href='/new'">
+        <form method='post' action='/search'>
+            <select name = "department">
+        @foreach($departments as $department)
+            <option value='{{$department->sectionname}}/{{$department->departmentname}}'>
+                {{$department->sectionname}}{{$department->departmentname}}
+            </option>
+        @endforeach
+            </select>
+            <input type="submit" value="検索">
+        </form>
+        <input type="button" value="新規登録" onclick="location.href='/'">
 	</div>
     <br>
     <table>

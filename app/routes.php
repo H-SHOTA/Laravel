@@ -29,4 +29,5 @@ Route::get('/', function()
 
 });
 */
-Route::resource('/', 'UserController');
+Route::controller('/', 'UserController');
+
