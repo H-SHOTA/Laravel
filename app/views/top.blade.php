@@ -2,16 +2,19 @@
 
 
 @section('content')
-    <div id="newRegistBtn" >
-        <form method='post' action='/search'>
+    <div id="ctrlArea" >
+        <form method='post' action='/'>
             <select name = "department">
+                <option value=""></option>
         @foreach($departments as $department)
-            <option value='{{$department->sectionname}}/{{$department->departmentname}}'>
-                {{$department->sectionname}}{{$department->departmentname}}
-            </option>
+                <option value='{{$department->sectionname}}/{{$department->departmentname}}'>
+                    {{$department->sectionname}}{{$department->departmentname}}
+                </option>
         @endforeach
             </select>
-            <input type="submit" value="検索">
+            <input type="submit" value="検索"><br>
+            <input type="hidden" name="containDlt" value='off'/>
+            <input type="checkbox" name="containDlt">削除済みを含める</input>
         </form>
         <input type="button" value="新規登録" onclick="location.href='/'">
 	</div>
