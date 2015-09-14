@@ -44,8 +44,6 @@ class UserController extends BaseController {
 
 	public function postIndex()
 	{
-var_dump(Input::all());
-
 		$postdata = Input::get('department');
 		$list = explode('/', $postdata);
 

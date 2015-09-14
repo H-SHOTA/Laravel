@@ -2,8 +2,8 @@
 
 
 @section('content')
-    <div id="ctrlArea" >
-        <form method='post' action='/'>
+    <div class="ctrlArea" >
+        <form method='post' action='/top'>
             <select name = "department">
                 <option value=""></option>
         @foreach($departments as $department)
@@ -16,22 +16,22 @@
             <input type="hidden" name="containDlt" value='off'/>
             <input type="checkbox" name="containDlt">削除済みを含める</input>
         </form>
-        <input type="button" value="新規登録" onclick="location.href='/'">
+        <input type="button" value="新規登録" onclick="location.href='edit/'">
 	</div>
     <br>
-    <table>
-		<tr class="tableHeader">
-			<th>名前</th>
-			<th>所属</th>
-			<th>メールアドレス</th>
-			<th>削除フラグ</th>
+    <table class='tableAlign'>
+		<tr class="tableHeader userlist">
+			<th class='userlist'>名前</th>
+			<th class='userlist'>所属</th>
+			<th class='userlist'>メールアドレス</th>
+			<th class='userlist'>削除フラグ</th>
 		</tr>
     @foreach($Users as $User)
-        <tr>
-        	<th>{{$User->familyname}} {{$User->firstname}}</th>
-        	<th>{{$User->sectionname}} {{$User->departmentname}}</th>
-        	<th>{{$User->mailaddress}}</th>
-        	<th>
+        <tr class="userlist">
+        	<th class='userlist'>{{$User->familyname}} {{$User->firstname}}</th>
+        	<th class='userlist'>{{$User->sectionname}} {{$User->departmentname}}</th>
+        	<th class='userlist'>{{$User->mailaddress}}</th>
+        	<th class='userlist'>
         		@if ($User->deleteflg === 0)
         			未削除
         		@else

@@ -2,7 +2,7 @@ h1 {
 	text-align:center;
 }
 
-table {
+table.tableAlign {
  	margin-left: auto;
  	margin-right: auto;
 	border-collapse: collapse;
@@ -16,11 +16,28 @@ table {
 	background-color: #EEEEEE;
 }
 
-#ctrlArea {
+.ctrlArea {
 	text-align:center;
 }
 
-tr th {
+.departmentSelect {
+	width: 380px;
+}
+
+.mailaddressBox {
+	width: 380px;
+}
+
+.registBtn {
+ 	text-align: right;
+}
+
+tr.userlist th.userlist {
 	border: black solid 1px;
 	padding: 5px;
 }
+
+tr.useredit th.useredit {
+	padding: 5px;
+}
+
