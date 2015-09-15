@@ -41,8 +41,8 @@
     		<tr class='useredit'>
     			<th class='useredit'>削除フラグ：</th>
     			<th class='useredit' colspan="2">
-					<input type="radio" name="ndelete" value="nodelete"> 未削除
-					<input type="radio" name="deleted" value="deleted"> 削除済み
+					<input type="radio" name="deleteflg" value="nodelete" checked> 未削除
+					<input type="radio" name="deleteflg" value="deleted"> 削除済み
     			</th>
     		</tr>
     		<tr>
