@@ -10,10 +10,13 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+Route::filter('edit', 'EditFilter');
 Route::get('/', 'UserController@getIndex');
 
 Route::controller('top/', 'UserController');
 
-Route::controller('edit/', 'EditController');
+Route::group(array('before' => 'edit'), function()
+{
+	Route::controller('edit/', 'EditController');
+});
 
