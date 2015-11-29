@@ -17,6 +17,6 @@ Route::controller('top/', 'UserController');
 
 Route::group(array('before' => 'edit'), function()
 {
-	Route::controller('edit/', 'EditController');
+	Route::controller('edit', 'EditController');
 });
 

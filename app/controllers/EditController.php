@@ -20,6 +20,11 @@ class EditController extends BaseController
 		}
 	}
 
+	public function postRegister()
+	{
+	    return 'hogeIndex!';
+	}
+
 	public function getIndex()
 	{
 		$departments = $this->_getDepartmentList();
@@ -30,6 +35,10 @@ class EditController extends BaseController
 	public function postIndex()
 	{
 		var_dump(Input::all());
-		return 'POST!!';
+	    return View::make('confirm', 
+	                      array( 'user' => Input::all(),
+	                            'title' => 'ユーザー登録確認', 
+	                            ));
 	}
+
 }
