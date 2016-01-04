@@ -37,7 +37,7 @@
                     @else
                         <th class='useredit' colspan="1">未削除</th>
                     @endif
-                    <input type='hidden' name='delete' value="{{$user['deleteflg']}}"/>
+                    <input type='hidden' name='deleteflg' value="{{$user['deleteflg']}}"/>
             </tr>
             <tr>
                 <th colspan="3" class='registBtn'>
