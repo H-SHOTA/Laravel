@@ -8,7 +8,11 @@
 
 @section('content')
     <div class="ctrlArea" >
+    @if(!isset($complete))
     <form method='post' action='/edit/register'> 
+    @else
+    <form method='get' action='/'> 
+    @endif
         <table  class='tableAlign'> 
             <tr class='useredit'>
                 <th class='useredit'>名前：</th>
@@ -41,10 +45,18 @@
             </tr>
             <tr>
                 <th colspan="3" class='registBtn'>
-                    <input type="submit" value="登録">
+                    @if(!isset($complete))
+                        <input type="submit" value="登録">
+                    @else
+                        <input type="submit" value="戻る">
+                    @endif
                 </th>
             </tr>
         </table><br>
+        @if(isset($user['update']))
+            <input type='hidden' name='update' value="update"/>
+            <input type='hidden' name='uid' value="{{$user['uid']}}"/>
+        @endif
         </form>
     </div>
 @stop

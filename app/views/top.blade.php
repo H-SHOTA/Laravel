@@ -28,7 +28,7 @@
 		</tr>
     @foreach($Users as $User)
         <tr class="userlist">
-        	<th class='userlist'>{{$User->familyname}} {{$User->firstname}}</th>
+        	<th class='userlist'><a href="/edit/update?uid={{$User->uid}}">{{$User->familyname}} {{$User->firstname}}</a></th>
         	<th class='userlist'>{{$User->sectionname}} {{$User->departmentname}}</th>
         	<th class='userlist'>{{$User->mailaddress}}</th>
         	<th class='userlist'>

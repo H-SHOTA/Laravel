@@ -12,7 +12,10 @@ class EditController extends BaseController
 		{
 			$list = DB::table('sectionmasters')
 					 ->join('departmentmasters', 'departmentmasters.sectioncd', '=', 'sectionmasters.sectioncd')
-					 ->select('sectionmasters.sectionname as sectionname', 'departmentmasters.departmentname as departmentname')
+					 ->select(
+					 	'departmentmasters.departmentcd as departmentcd',
+					 	'sectionmasters.sectionname as sectionname', 
+					 	'departmentmasters.departmentname as departmentname')
 					 ->get();
 			$expiresAt = Carbon::now()->addMinutes(10);
 			Cache::add('departmentList', $list, $expiresAt);
@@ -32,30 +35,46 @@ class EditController extends BaseController
 
 	public function postRegister()
 	{
-		var_dump(Input::all());
-
 		$postdata = Input::get('department');
 		$list = explode('/', $postdata);
 		$depAndSecCd = $this->_getDepartmentAndSectionCd($list[0], $list[1]);
-
-		DB::table('usermasters')->insert(
-			array(
-				'uid' => DB::table('usermasters')->max('uid') + 1,
-				'departmentcd' => $depAndSecCd[0],
-				'familyname' => Input::get('sei'),
-				'firstname' => Input::get('mei'),
-				'familykana' => Input::get('seiKana'),
-				'firstkana' => Input::get('meiKana'),
-				'mailaddress' => Input::get('mailaddress'),
-				'deleteflg' => ((Input::get('delete') === 'nodelete')? 0 : 1),
-				'insdate' => Carbon::now(),
-				'lastupdate' => Carbon::now(),
-				)
-			);
-
+		if(Input::has('update')){
+			DB::table('usermasters')
+				->where('uid', Input::get('uid'))
+				->update(
+					array(
+						'departmentcd' => $depAndSecCd[0],
+						'familyname' => Input::get('sei'),
+						'firstname' => Input::get('mei'),
+						'familykana' => Input::get('seiKana'),
+						'firstkana' => Input::get('meiKana'),
+						'mailaddress' => Input::get('mailaddress'),
+						'deleteflg' => ((Input::get('delete') === 'nodelete')? 0 : 1),
+						'lastupdate' => Carbon::now(),
+					)
+				);
+		}
+		else 
+		{
+			DB::table('usermasters')->insert(
+				array(
+					'uid' => DB::table('usermasters')->max('uid') + 1,
+					'departmentcd' => $depAndSecCd[0],
+					'familyname' => Input::get('sei'),
+					'firstname' => Input::get('mei'),
+					'familykana' => Input::get('seiKana'),
+					'firstkana' => Input::get('meiKana'),
+					'mailaddress' => Input::get('mailaddress'),
+					'deleteflg' => ((Input::get('delete') === 'nodelete')? 0 : 1),
+					'insdate' => Carbon::now(),
+					'lastupdate' => Carbon::now(),
+					)
+				);
+		}
 	    return View::make('confirm', 
 	                      array( 'user' => Input::all(),
 	                            'title' => 'ユーザー登録完了', 
+	                            'complete' => ''
 	                            ));
 	}
 
@@ -75,4 +94,11 @@ class EditController extends BaseController
 	                            ));
 	}
 
+	public function getUpdate()
+	{
+		$user = DB::table('usermasters')->where('uid', Input::get('uid'))->first();
+			var_dump($user);
+		$departments = $this->_getDepartmentList();
+		return  View::make('edit', array('title' => 'ユーザー情報編集', 'user' => $user,'departments' => $departments));	
+	}
 }
