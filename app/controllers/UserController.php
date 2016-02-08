@@ -1,25 +1,6 @@
 <?php
 
 class UserController extends BaseController {
-
-	private function _getDepartmentList()
-	{
-		if (Cache::has('departmentList')) 
-		{
-			return Cache::get('departmentList');
-		} 
-		else 
-		{
-			$list = DB::table('sectionmasters')
-					 ->join('departmentmasters', 'departmentmasters.sectioncd', '=', 'sectionmasters.sectioncd')
-					 ->select('sectionmasters.sectionname as sectionname', 'departmentmasters.departmentname as departmentname')
-					 ->get();
-			$expiresAt = Carbon::now()->addMinutes(10);
-			Cache::add('departmentList', $list, $expiresAt);
-			return $list;
-		}
-	}
-
 	private function _getUserList()
 	{
 		return DB::table('usermasters')

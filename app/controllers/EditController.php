@@ -2,37 +2,6 @@
 
 class EditController extends BaseController 
 {
-	private function _getDepartmentList()
-	{
-		if (Cache::has('departmentList')) 
-		{
-			return Cache::get('departmentList');
-		} 
-		else 
-		{
-			$list = DB::table('sectionmasters')
-					 ->join('departmentmasters', 'departmentmasters.sectioncd', '=', 'sectionmasters.sectioncd')
-					 ->select(
-					 	'departmentmasters.departmentcd as departmentcd',
-					 	'sectionmasters.sectionname as sectionname', 
-					 	'departmentmasters.departmentname as departmentname')
-					 ->get();
-			$expiresAt = Carbon::now()->addMinutes(10);
-			Cache::add('departmentList', $list, $expiresAt);
-			return $list;
-		}
-	}
-
-	private function _getDepartmentAndSectionCd($sectionname, $departmentName)
-	{
-		$department = DB::table('departmentmasters')
-			->join('sectionmasters', 'departmentmasters.sectioncd', '=', 'sectionmasters.sectioncd')
-			->where('sectionname', $sectionname)
-			->where('departmentname', $departmentName)
-			->first();
-		return array($department->sectioncd,$department->departmentcd);
-	}
-
 	public function postRegister()
 	{
 		$postdata = Input::get('department');
@@ -87,7 +56,6 @@ class EditController extends BaseController
 
 	public function postIndex()
 	{
-		var_dump(Input::all());
 	    return View::make('confirm', 
 	                      array( 'user' => Input::all(),
 	                            'title' => 'ユーザー登録確認', 
@@ -97,7 +65,6 @@ class EditController extends BaseController
 	public function getUpdate()
 	{
 		$user = DB::table('usermasters')->where('uid', Input::get('uid'))->first();
-			var_dump($user);
 		$departments = $this->_getDepartmentList();
 		return  View::make('edit', array('title' => 'ユーザー情報編集', 'user' => $user,'departments' => $departments));	
 	}
